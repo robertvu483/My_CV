@@ -1,1 +1,89 @@
 /* app css stylesheet */
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: #dfdfdf;
+    font-family: Arial, sans-serif;
+}
+
+#wrapper {
+    width: 974px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 13px;
+}
+
+#basic {
+    overflow: hidden;
+    color: #666;
+}
+
+#avatar {
+    width: 240px;
+    height: 240px;
+    float: left;
+}
+
+#profile {
+    background: linear-gradient(rgba(255, 255, 255, 0.5), #fff);
+    height: 190px;
+    overflow: auto;
+    padding: 25px 40px;
+}
+
+#profile > h1 {
+    font-size: 22px;
+    color: black;
+}
+
+#profile > p {
+    font-size: 18px;
+}
+
+.overview > th {
+    text-align: left;
+    font-weight: normal;
+    color: #999;
+}
+
+.overview > td {
+    color: #333;
+}
+
+#contact_info {
+    background: #fff url("img/bg_contact_info.png") repeat-x;
+}
+
+#contact_info > table {
+    padding: 18px 20px;
+}
+
+.contactInfo > th {
+    text-align: left;
+    font-weight: normal;
+}
+
+.contactInfo > th > img {
+    width: 20px;
+    height: 13px;
+}
+
+.contactInfo a {
+    color: #069;
+    text-decoration: none;
+}
+
+#contact_footer {
+    padding: 8px 10px;
+    text-align: center;
+    background-color: #ececec;
+    border-top: 1px dashed #ccc; 
+}
+
+#contact_footer > * {
+    vertical-align: middle;
+}

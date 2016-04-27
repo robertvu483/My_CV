@@ -1,0 +1,18 @@
+{
+    "icon":"img/experience.png",
+    "title":"Experience",
+    "experiences":[
+        {
+            "title":"Student",
+            "company":"VNUHCM - University of Science",
+            "startDate":"September 2013",
+            "endDate":"Current",
+            "location":"Hồ Chí Minh City",
+            "description":[
+                "Lead a small team to make many project from small to big one.",
+                "Participated in many voluteering activities as organizers"
+            ],
+            "icon":"img/hcmus.png"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "icon":"img/education.png",
+    "title":"Education",
+    "schools":[
+        {
+            "name":"VNUHCM - University of Science",
+            "degree":"Student",
+            "field":"Software Engineering",
+            "grade":"8.xx/10",
+            "startDate":"2013",
+            "endDate":"2017",
+            "icon":"img/hcmus.png"
+        }
+    ]
+}

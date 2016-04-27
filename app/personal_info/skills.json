@@ -1,0 +1,30 @@
+{
+    "icon":"img/skills.png",
+    "title":"Skills",
+    "sections":[
+        {
+            "title":"Top Skills",
+            "values":[
+                "C#",
+                "Windows Universal Apps",
+                "Java",
+                "Android",
+                "Applications",
+                "Computer",
+                "Information Technology",
+                "Mobile Development",
+                "Software Engineering",
+                "Web Development"
+            ]
+        },
+        {
+            "title":"Also knows about",
+            "values":[
+                "Leadership",
+                "C/C++",
+                "Blog",
+                "Media Editting"
+            ]
+        }
+    ]
+}

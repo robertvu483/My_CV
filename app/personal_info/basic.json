@@ -1,0 +1,40 @@
+{
+    "avatar":"img/avatar.jpg",
+    "name":"Vũ Hoàng Phúc",
+    "headline":"Freshman looking for a job",
+    "location":"Hồ Chí Minh City",
+    "overview":[
+        {
+            "title":"Current",
+            "values":[
+                "None"
+            ]
+        },
+        {
+            "title":"Education",
+            "values":[
+                "VNUHCM - University of Science"
+            ]
+        }
+    ],
+    "contactInfo": [
+        {
+            "icon":"img/gmail.png",
+            "method":"Gmail",
+            "ref":"mailto:ryanvu644@gmail.com",
+            "display":"Ryan Vũ"
+        },
+        {
+            "icon":"img/facebook.png",
+            "method":"Facebook",
+            "ref":"https://www.facebook.com/ryan.vu.10",
+            "display":"Ryan Vũ"
+        },
+        {
+            "icon":"img/phone.png",
+            "method":"Phone",
+            "ref":"tell:0978206287",
+            "display":"0978206287"
+        }
+    ]
+}

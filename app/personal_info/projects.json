@@ -1,0 +1,15 @@
+{
+    "icon":"img/projects.png",
+    "title":"Projects",
+    "projects":[
+        {
+            "name":"My Paint - GDI+",
+            "startDate":"September 2015",
+            "endDate":"November 2015",
+            "description":[
+                "A paint that use GDI= for drawing and WPF for making GUI.",
+                "Layer manipulating is still under development."
+            ]
+        }
+    ]
+}

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html lang="en" ng-app="myCV" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myCV" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myCV" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myCV" class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,12 +11,112 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="app.css">
 </head>
-<body>
+<body ng-controller="bodyController">
     <!--[if lt IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div>Nothing here yet!</div>
+    <div id="wrapper">
+        
+        <div id="basic">
+            
+            <img id="avatar" ng-src="{{basic.avatar}}" alt="Avatar"/>
+            <div id="profile">
+                <h1>{{basic.name}}</h1>
+                <p>{{basic.headline}}</p>
+                {{basic.location}}
+                <table>
+                    <tr class="overview" ng-repeat="section in basic.overview">
+                        <th>{{section.title}}</th>
+                        <td>
+                            <span ng-repeat="value in section.values"><span ng-show="!$first">, </span><span>{{value}}</span></span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="contact_info">
+                <table>
+                    <tr class="contactInfo" ng-repeat="link in basic.contactInfo">
+                        <th><img ng-src="{{link.icon}}" alt="Icon"/>{{link.method}}</th>
+                        <td>
+                            <a ng-href="{{link.ref}}">{{link.display}}</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="contact_footer">
+                <img src="img/contact_info.png" alt="Contact Info"/>
+                <span>Contact Info</span>
+            </div>
+            
+        </div>
+        
+        <div id="background">
+            <h2>Background</h2>
+            <div>
+                
+                <div id="summary">
+                    <h3><img ng-src="{{summary.icon}}" alt="Icon"/>{{summary.title}}</h3>
+                    <p ng-repeat="para in summary.paras">
+                        <br ng-show="!$first"/>
+                        <span>{{para}}</span>
+                    <p>
+                </div>
+                
+                <div id="experience">
+                    <h3><img ng-src="{{exp.icon}}" alt="Icon"/>{{exp.title}}</h3>
+                    <div ng-repeat="experience in exp.experiences">
+                        <img ng-src="{{experience.icon}}" alt="Icon"/>
+                        <h4>{{experience.title}}</h4>
+                        <h5>{{experience.company}}</h5>
+                        <span>{{experience.startDate}} - {{experience.endDate}} | {{experience.location}}</span>
+                        <p ng-repeat="para in experience.description">
+                            <br ng-show="!$first"/>
+                            <span>{{para}}</span>
+                        <p>
+                    </div>
+                </div>
+                
+                <div id="projects">
+                    <h3><img ng-src="{{prj.icon}}" alt="Icon"/>{{prj.title}}</h3>
+                    <div ng-repeat="project in prj.projects">
+                        <img ng-src="{{project.icon}}" alt="Icon"/>
+                        <h4>{{project.name}}</h4>
+                        <span>{{project.startDate}} - {{project.endDate}}</span>
+                        <p ng-repeat="para in project.description">
+                            <br ng-show="!$first"/>
+                            <span>{{para}}</span>
+                        <p>
+                    </div>
+                </div>
+                
+                <div id="skills">
+                    <h3><img ng-src="{{skills.icon}}" alt="Icon"/>{{skills.title}}</h3>
+                    <div ng-repeat="section in skills.sections">
+                        <h5>{{section.title}}</h5>
+                        <div ng-repeat="value in section.values">
+                            <div></div>
+                            <span>{{value}}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="education">
+                    <h3><img ng-src="{{education.icon}}" alt="Icon"/>{{education.title}}</h3>
+                    <div ng-repeat="school in education.schools">
+                        <img ng-src="{{school.icon}}" alt="Icon"/>
+                        <h4>{{school.name}}</h4>
+                        <h5>{{school.degree}}, {{school.field}}<span>, </span>{{school.grade}}</h5>
+                        <span>{{school.startDate}} - {{school.endDate}}</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
 
     <!-- In production use:
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
