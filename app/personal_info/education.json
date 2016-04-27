@@ -10,6 +10,15 @@
             "startDate":"2013",
             "endDate":"2017",
             "icon":"img/hcmus.png"
+        },
+        {
+            "name":"Lorem Ipsum",
+            "degree":"Lorem",
+            "field":"Ipsum",
+            "grade":"Dolor",
+            "startDate":"Sit",
+            "endDate":"Amet",
+            "icon":"img/hcmus.png"
         }
     ]
 }

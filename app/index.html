@@ -16,24 +16,29 @@
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
+    <img id="banner" src="img/banner.jpg" alt="banner"/>
+    
     <div id="wrapper">
         
         <div id="basic">
             
-            <img id="avatar" ng-src="{{basic.avatar}}" alt="Avatar"/>
-            <div id="profile">
-                <h1>{{basic.name}}</h1>
-                <p>{{basic.headline}}</p>
-                {{basic.location}}
-                <table>
-                    <tr class="overview" ng-repeat="section in basic.overview">
-                        <th>{{section.title}}</th>
-                        <td>
-                            <span ng-repeat="value in section.values"><span ng-show="!$first">, </span><span>{{value}}</span></span>
-                        </td>
-                    </tr>
-                </table>
+            <div id="top_card">
+                <img id="avatar" ng-src="{{basic.avatar}}" alt="Avatar"/>
+                <div id="profile">
+                    <h1>{{basic.name}}</h1>
+                    <p>{{basic.headline}}</p>
+                    <span>{{basic.location}}</span>
+                    <table>
+                        <tr class="overview" ng-repeat="section in basic.overview">
+                            <th>{{section.title}}</th>
+                            <td>
+                                <span ng-repeat="value in section.values"><span ng-show="!$first">, </span><span>{{value}}</span></span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
+            
 
             <div id="contact_info">
                 <table>
@@ -54,66 +59,69 @@
         </div>
         
         <div id="background">
+            
             <h2>Background</h2>
-            <div>
                 
-                <div id="summary">
-                    <h3><img ng-src="{{summary.icon}}" alt="Icon"/>{{summary.title}}</h3>
+            <div id="summary" class="section">
+                <h3><img ng-src="{{summary.icon}}" alt="Icon"/>{{summary.title}}</h3>
+                <div>
                     <p ng-repeat="para in summary.paras">
                         <br ng-show="!$first"/>
                         <span>{{para}}</span>
                     <p>
                 </div>
-                
-                <div id="experience">
-                    <h3><img ng-src="{{exp.icon}}" alt="Icon"/>{{exp.title}}</h3>
-                    <div ng-repeat="experience in exp.experiences">
-                        <img ng-src="{{experience.icon}}" alt="Icon"/>
-                        <h4>{{experience.title}}</h4>
-                        <h5>{{experience.company}}</h5>
-                        <span>{{experience.startDate}} - {{experience.endDate}} | {{experience.location}}</span>
+            </div>
+
+            <div id="experience" class="section">
+                <h3><img ng-src="{{exp.icon}}" alt="Icon"/>{{exp.title}}</h3>
+                <div class="sectionHeader" ng-repeat="experience in exp.experiences">
+                    <img ng-src="{{experience.icon}}" alt="Icon"/>
+                    <h4>{{experience.title}}</h4>
+                    <h5>{{experience.company}}</h5>
+                    <span>{{experience.startDate}} - {{experience.endDate}} | {{experience.location}}</span>
+                    <div>
                         <p ng-repeat="para in experience.description">
                             <br ng-show="!$first"/>
                             <span>{{para}}</span>
                         <p>
                     </div>
                 </div>
-                
-                <div id="projects">
-                    <h3><img ng-src="{{prj.icon}}" alt="Icon"/>{{prj.title}}</h3>
-                    <div ng-repeat="project in prj.projects">
-                        <img ng-src="{{project.icon}}" alt="Icon"/>
-                        <h4>{{project.name}}</h4>
-                        <span>{{project.startDate}} - {{project.endDate}}</span>
+            </div>
+
+            <div id="projects" class="section">
+                <h3><img ng-src="{{prj.icon}}" alt="Icon"/>{{prj.title}}</h3>
+                <div class="sectionHeader" ng-repeat="project in prj.projects">
+                    <h4>{{project.name}}</h4>
+                    <span>{{project.startDate}} - {{project.endDate}}</span>
+                    <div>
                         <p ng-repeat="para in project.description">
                             <br ng-show="!$first"/>
                             <span>{{para}}</span>
                         <p>
                     </div>
                 </div>
-                
-                <div id="skills">
-                    <h3><img ng-src="{{skills.icon}}" alt="Icon"/>{{skills.title}}</h3>
-                    <div ng-repeat="section in skills.sections">
-                        <h5>{{section.title}}</h5>
-                        <div ng-repeat="value in section.values">
-                            <div></div>
-                            <span>{{value}}</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div id="education">
-                    <h3><img ng-src="{{education.icon}}" alt="Icon"/>{{education.title}}</h3>
-                    <div ng-repeat="school in education.schools">
-                        <img ng-src="{{school.icon}}" alt="Icon"/>
-                        <h4>{{school.name}}</h4>
-                        <h5>{{school.degree}}, {{school.field}}<span>, </span>{{school.grade}}</h5>
-                        <span>{{school.startDate}} - {{school.endDate}}</span>
-                    </div>
-                </div>
-                
             </div>
+
+            <div id="skills" class="section">
+                <h3><img ng-src="{{skills.icon}}" alt="Icon"/>{{skills.title}}</h3>
+                <div id="inlineList" ng-repeat="section in skills.sections">
+                    <h5>{{section.title}}</h5>
+                    <ul>
+                        <li ng-repeat="value in section.values">{{value}}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="education" class="section">
+                <h3><img ng-src="{{education.icon}}" alt="Icon"/>{{education.title}}</h3>
+                <div class="sectionHeader" ng-repeat="school in education.schools">
+                    <img ng-src="{{school.icon}}" alt="Icon"/>
+                    <h4>{{school.name}}</h4>
+                    <h5>{{school.degree}}, {{school.field}}<span>, </span>{{school.grade}}</h5>
+                    <span>{{school.startDate}} - {{school.endDate}}</span>
+                </div>
+            </div>
+                
         </div>
         
     </div>

@@ -10,16 +10,29 @@ body {
     font-family: Arial, sans-serif;
 }
 
+#banner {
+    width: 100%;
+    height: 450px;
+    position: absolute;
+}
+
 #wrapper {
     width: 974px;
     margin-left: auto;
     margin-right: auto;
     font-size: 13px;
+    position: relative;
+    top: 250px;
 }
 
 #basic {
-    overflow: hidden;
     color: #666;
+    margin-bottom: 10px;
+}
+
+#top_card {    
+    overflow: hidden;
+    background: linear-gradient(rgba(255, 255, 255, 0.8), #fff);
 }
 
 #avatar {
@@ -29,32 +42,38 @@ body {
 }
 
 #profile {
-    background: linear-gradient(rgba(255, 255, 255, 0.5), #fff);
-    height: 190px;
     overflow: auto;
     padding: 25px 40px;
 }
 
-#profile > h1 {
+h1 {
     font-size: 22px;
     color: black;
 }
 
 #profile > p {
     font-size: 18px;
+    padding: 5px 0px;
+}
+
+#profile > span {
+    margin: 2px 0px;
 }
 
 .overview > th {
     text-align: left;
     font-weight: normal;
     color: #999;
+    padding: 2px 20px 0px 0px;
 }
 
 .overview > td {
     color: #333;
+    padding-top: 2px;
 }
 
 #contact_info {
+    clear: left;
     background: #fff url("img/bg_contact_info.png") repeat-x;
 }
 
@@ -65,11 +84,17 @@ body {
 .contactInfo > th {
     text-align: left;
     font-weight: normal;
+    padding: 2px 20px 5px 0px;
 }
 
 .contactInfo > th > img {
     width: 20px;
     height: 13px;
+    padding: 2px 0px 5px;
+}
+
+.contactInfo > th > * {
+    vertical-align: middle;
 }
 
 .contactInfo a {
@@ -86,4 +111,94 @@ body {
 
 #contact_footer > * {
     vertical-align: middle;
+}
+
+h2 {
+    padding: 7.5px 20px;
+    color: white;
+    background-color: #333;
+    display: inline-block;
+    font-size: 13px;
+    margin-left: -20px;
+}
+
+#background {
+    background-color: white;
+    padding: 0px 20px;
+    color: #333;
+}
+
+h3 {
+    padding: 10px 0px;
+    margin-bottom: 23px;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+h3 > img {
+    margin-right: 14px;
+    height: 32px;
+    color: #464646;
+}
+
+h3 > * {
+    vertical-align: middle;
+}
+
+.section {
+    margin: 28px 0px 8px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.section > div {
+    margin-bottom: 30px;
+}
+
+h4 {
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+h5 {
+    font-size: 14px;
+    font-weight: normal;
+    color: #464646;
+}
+
+.sectionHeader > span {
+    color: #666;
+    margin-top: 3px;
+}
+
+.sectionHeader > div {
+    margin-top: 10px;
+}
+
+.sectionHeader > img {
+    float: right;
+}
+
+#inlineList > ul {
+    margin-top: 20px;
+    list-style-type: ;
+}
+
+#inlineList > ul > li {
+    margin: 0px 5px 5px 0px;
+    display: inline-block;
+    padding: 3px 13px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+#inlineList > ul > li::before {
+    content: "00";
+    background-color: #1ba8e5;
+    color: #1ba8e5;
+    position: relative;
+    left: -14px;
+    padding: 3px 2px;
+    border: 1px solid #1ba8e5;
+    border-radius: 3px 0px 0px 3px;
 }
