@@ -214,6 +214,7 @@ h5 {
 }
 
 input {
+    width: 100%;
     font-size: inherit;
 }
 
@@ -325,4 +326,26 @@ textarea:focus {
 .required::after {
     content: " *";
     color: #900;
+}
+
+em {
+    font-style: normal;
+    color: 
+}
+
+.normalP {
+    white-space: normal;
+}
+
+.note {
+    color: #66696a;
+    font-size: 11px;
+}
+
+.smallInput {
+    width: 52px;
+}
+
+.mediumInput {
+    width: 152px;
 }

@@ -4,21 +4,25 @@
     "schools":[
         {
             "name":"VNUHCM - University of Science",
+            "icon":"img/hcmus.png",
             "degree":"Student",
             "field":"Software Engineering",
-            "grade":"8.xx/10",
-            "startDate":"2013",
-            "endDate":"2017",
-            "icon":"img/hcmus.png"
+            "grade":"8/10",
+            "startYear":2013,
+            "endYear":2017,
+            "activities":"Blood Donation, Volunteering, VNU Will Run, ...",
+            "description":"Study about IT and other Politic subjects."
         },
         {
             "name":"Lorem Ipsum",
+            "icon":"img/hcmus.png",
             "degree":"Lorem",
             "field":"Ipsum",
             "grade":"Dolor",
-            "startDate":"Sit",
-            "endDate":"Amet",
-            "icon":"img/hcmus.png"
+            "startYear":2013,
+            "endYear":2017,
+            "activities":"Sed\nmollis\ncongue, placerat\nQuisque",
+            "description":"Integer quis eros eget tortor pulvinar blandit. Maecenas consequat quam nunc, at ultrices odio dapibus eu. In urna nisl, consequat vehicula congue et, interdum quis nunc. Proin feugiat sapien mi, non aliquet nisi sodales non. Nulla at cursus leo. Sed ultrices dapibus lacus ac laoreet. Morbi cursus placerat sem quis laoreet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.\n\nMaecenas ut felis augue. Nulla facilisi. Vivamus porttitor, dui sit amet vulputate semper, nisi enim tempus neque, quis commodo sapien elit sit amet erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras sem dui, fringilla in ultrices ac, pellentesque ut justo. Praesent feugiat dictum ex et rhoncus. Sed non risus non mi tristique molestie quis vitae dolor. Vivamus lacinia vel ipsum eget semper. Nunc nisi mauris, commodo id elementum a, eleifend vel libero. Phasellus laoreet pretium finibus. Pellentesque vitae mauris quis arcu fermentum molestie. Aliquam quam odio, tempus eget libero ut, lobortis aliquet magna. Integer ante magna, consequat at sollicitudin a, gravida ac mi. Integer a pellentesque nulla."
         }
     ]
 }

@@ -176,9 +176,9 @@
                         <div>
                             <label class="required">Time Period</label>
                             <br/>
-                            <input type="month" ng-model="temp.experience.startDate" required/>
+                            <input class="mediumInput" type="month" ng-model="temp.experience.startDate" required/>
                             -
-                            <input type="month" ng-model="temp.experience.endDate" min="{{temp.experience.startDate | date:'yyyy-MM'}}" required/>
+                            <input class="mediumInput" type="month" ng-model="temp.experience.endDate" min="{{temp.experience.startDate | date:'yyyy-MM'}}" required/>
                         </div>
                         <div>
                             <label>Description</label>
@@ -219,9 +219,9 @@
                         <div>
                             <label>Date range</label>
                             <br/>
-                            <input type="month" ng-model="temp.projects.startDate" ng-required="hasData(temp.projects.endDate)"/>
+                            <input class="mediumInput" type="month" ng-model="temp.projects.startDate" ng-required="hasData(temp.projects.endDate)"/>
                             -
-                            <input type="month" ng-model="temp.projects.endDate" min="{{temp.projects.startDate | date:'yyyy-MM'}}"/>
+                            <input class="mediumInput" type="month" ng-model="temp.projects.endDate" min="{{temp.projects.startDate | date:'yyyy-MM'}}"/>
                         </div>
                         <div>
                             <label>Description</label>
@@ -245,15 +245,78 @@
             </div>
 
             <div id="education" class="section">
-                <h3><img ng-src="{{education.icon}}" alt="Icon"/>{{education.title}}</h3>
-                <div class="sectionHeader" ng-repeat="school in education.schools">
+                <h3>
+                    <img ng-src="{{education.icon}}" alt="Icon"/>
+                    {{education.title}}
+                    <button class="card add" ng-click="editArrayForm('education', {'icon':'img/hcmus.png'}, -1)">Add project</button>
+                </h3>
+                <div ng-show="display.education" class="sectionHeader" ng-repeat="school in education.schools">
                     <img ng-src="{{school.icon}}" alt="Icon"/>
-                    <h4>{{school.name}}</h4>
-                    <h5>{{school.degree}}, {{school.field}}<span>, </span>{{school.grade}}</h5>
-                    <span>{{school.startDate}} - {{school.endDate}}</span>
+                    <h4>
+                        {{school.name}}
+                        <button class="card edit" ng-click="editArrayForm('education', school, $index)"></button>
+                    </h4>
+                    <h5>{{school.degree}}<span ng-show="hasData(school.degree) && (hasData(school.field) || hasData(school.grade))">, </span>{{school.field}}<span ng-show="hasData(school.field) && hasData(school.grade)">, </span>{{school.grade}}</h5>
+                    <span>
+                        {{school.startYear}}
+                        <span ng-show="hasDate(school.startYear) && hasData(school.endYear)"> - </span>
+                        {{school.endYear}}
+                    </span>
+                    <p>{{school.description}}</p>
+                    <p class="normalP">
+                        <em ng-show="hasData(school.activities)">Activities and Societies:</em>
+                        {{school.activities}}
+                    </p>
+                </div>
+                <div ng-show="!display.education">
+                    <form class="editForm" ng-submit="submitArrayForm('education', education.schools, temp.education)">
+                        <div>
+                            <label class="required">School</label>
+                            <br/>
+                            <input type="text" ng-model="temp.education.name" required/>
+                        </div>
+                        <div>
+                            <label>Dates Attended</label>
+                            <br/>
+                            <input class="smallInput" type="number" ng-model="temp.education.startYear" min="1850" max="9999"/>
+                            -
+                            <input class="smallInput" type="number" ng-model="temp.education.endYear" min="{{temp.education.startYear}}" max="9999"/>
+                            <span class="note">Or expected graduation year</span>
+                        </div>
+                        <div>
+                            <label>Degree</label>
+                            <br/>
+                            <input type="text" ng-model="temp.education.degree"/>
+                        </div>
+                        <div>
+                            <label>Field of Study</label>
+                            <br/>
+                            <input type="text" ng-model="temp.education.field"/>
+                        </div>
+                        <div>
+                            <label>Grade</label>
+                            <br/>
+                            <input type="text" ng-model="temp.education.grade"/>
+                        </div>
+                        <div>
+                            <label>Activities and Societies</label>
+                            <br/>
+                            <textarea ng-model="temp.education.activities" rows="3"></textarea>
+                            <br/>
+                            <br/>
+                            <span class="note">Examples: Alpha Phi Omega, Chamber Chorale, Debate Team</span>
+                        </div>
+                        <div>
+                            <label>Description</label>
+                            <br/>
+                            <textarea ng-model="temp.education.description" rows="6"></textarea>
+                        </div>
+                        <button class="button save" type="submit"></button>
+                        <button class="button cancel" type="button" ng-click="show('education')"></button>
+                    </form>
                 </div>
             </div>
-                
+            
         </div>
         
     </div>

@@ -51,7 +51,8 @@ myCV.controller('bodyController', function ($scope, $http) {
         "basicContact": true,
         "summary": true,
         "experience": true,
-        "projects": true
+        "projects": true,
+        "education": true
     };
     
     $scope.temp = {
@@ -61,12 +62,14 @@ myCV.controller('bodyController', function ($scope, $http) {
         "basicContact": {},
         "summary": "",
         "experience": {},
-        "projects": {}
+        "projects": {},
+        "education": {}
     };
     
     $scope.editIndex = {
         "experience": -1,
-        "projects": -1
+        "projects": -1,
+        "education": -1
     };
     
     $scope.show = function (displayName) {
