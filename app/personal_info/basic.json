@@ -3,39 +3,29 @@
     "name":"Vũ Hoàng Phúc",
     "headline":"Freshman looking for a job",
     "location":"Hồ Chí Minh City",
-    "overview":[
-        {
-            "title":"Current",
-            "values":[
-                "Pellentesque",
-                "Iaculis"
-            ]
-        },
-        {
-            "title":"Education",
-            "values":[
-                "VNUHCM - University of Science",
-                "Venenatis"
-            ]
-        }
-    ],
     "contactInfo": [
         {
             "icon":"img/gmail.png",
             "method":"Gmail",
-            "ref":"mailto:ryanvu644@gmail.com",
+            "protocal":"mailto:",
+            "type":"email",
+            "ref":"ryanvu644@gmail.com",
             "display":"Ryan Vũ"
         },
         {
             "icon":"img/facebook.png",
             "method":"Facebook",
+            "protocal":"",
+            "type":"url",
             "ref":"https://www.facebook.com/ryan.vu.10",
             "display":"Ryan Vũ"
         },
         {
             "icon":"img/phone.png",
             "method":"Phone",
-            "ref":"tell:0978206287",
+            "protocal":"tel:",
+            "type":"tel",
+            "ref":"0978206287",
             "display":"0978206287"
         }
     ]

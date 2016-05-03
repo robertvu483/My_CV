@@ -5,6 +5,10 @@
     padding: 0px;
 }
 
+p {
+    white-space: pre-wrap;
+}
+
 body {
     background-color: #dfdfdf;
     font-family: Arial, sans-serif;
@@ -51,7 +55,7 @@ h1 {
     color: black;
 }
 
-#profile > p {
+#profile > div {
     font-size: 18px;
     padding: 5px 0px;
 }
@@ -70,6 +74,7 @@ h1 {
 .overview > td {
     color: #333;
     padding-top: 2px;
+    width: 100%;
 }
 
 #contact_info {
@@ -85,6 +90,11 @@ h1 {
     text-align: left;
     font-weight: normal;
     padding: 2px 20px 5px 0px;
+    white-space: nowrap;
+}
+
+.contactInfo > td {
+    width: 100%;
 }
 
 .contactInfo > th > img {
@@ -94,7 +104,7 @@ h1 {
 }
 
 .contactInfo > th > * {
-    vertical-align: middle;
+    vertical-align: bottom;
 }
 
 .contactInfo a {
@@ -201,4 +211,85 @@ h5 {
     padding: 3px 2px;
     border: 1px solid #1ba8e5;
     border-radius: 3px 0px 0px 3px;
+}
+
+input {
+    font-size: inherit;
+}
+
+.edit {
+    background-color: rgba(0, 0, 0, 0);
+    border: 0px;
+    font-size: inherit;
+    color: #505e69;
+    padding: 2px 4px;
+    text-decoration: none;
+}
+
+.edit::after {
+    content: "\270E";
+}
+
+.edit:hover {
+    color: white;
+    background-color: #00a0dc;
+    cursor: pointer;
+}
+
+.button {
+    border-radius: 3px;
+    vertical-align: bottom;
+    padding: 4px 13px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.save {
+    border: 1px solid #1b5480;
+    background: linear-gradient(#287bbc, #23639a);
+    color: white;
+}
+
+.save::after {
+    content: "Save";
+}
+
+.cancel {
+    border: 1px solid #a7a7a7;
+    background: linear-gradient(#f2f2f2, #e9e9e9, #d8d8d8, #d1d1d1);
+    color: #444;
+}
+
+.cancel::after {
+    content: "Cancel";
+}
+
+.editForm {
+    width: 100%;
+    border: 1px solid #e9e9e9;
+    margin: 0px -20px;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.editForm > div {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+    margin: 0px 6px 3px 0px;
+    color: black;
+}
+
+textarea {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-family: sans-serif;
+    width: 100%;
+    max-width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }

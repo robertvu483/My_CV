@@ -15,7 +15,6 @@
     <!--[if lt IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
     <img id="banner" src="img/banner.jpg" alt="banner"/>
     
     <div id="wrapper">
@@ -25,31 +24,87 @@
             <div id="top_card">
                 <img id="avatar" ng-src="{{basic.avatar}}" alt="Avatar"/>
                 <div id="profile">
-                    <h1>{{basic.name}}</h1>
-                    <p>{{basic.headline}}</p>
-                    <span>{{basic.location}}</span>
+                    
+                    <h1>
+                        <span ng-show="show.basicName">
+                            {{basic.name}}
+                            <button ng-click="editForm('basicName', basic.name)" class="edit"></button>
+                        </span>
+                        <form ng-show="!show.basicName" ng-submit="submitForm('basicName', basic, 'name', temp.basicName)">
+                            <input type="text" ng-model="temp.basicName"/>
+                            <button class="button save" type="submit"></button>
+                            <button class="button cancel" type="button" ng-click="toggle('basicName')"></button>
+                        </form>
+                    </h1>
+                    
+                    <div>
+                        <span ng-show="show.basicHeadline">
+                            {{basic.headline}}
+                            <button class="edit" ng-click="editForm('basicHeadline', basic.headline)"></button>
+                        </span>
+                        <form ng-show="!show.basicHeadline" ng-submit="submitForm('basicHeadline', basic, 'headline', temp.basicHeadline)">
+                            <input type="text" ng-model="temp.basicHeadline"/>
+                            <button class="button save" type="submit"></button>
+                            <button class="button cancel" type="button" ng-click="toggle('basicHeadline')"></button>
+                        </form>
+                    </div>
+                    
+                    <span ng-show="show.basicLocation">
+                        {{basic.location}}
+                        <button class="edit" ng-click="editForm('basicLocation', basic.location)"></button>
+                    </span>
+                    <form ng-show="!show.basicLocation" ng-submit="submitForm('basicLocation', basic, 'location', temp.basicLocation)">
+                        <input type="text" ng-model="temp.basicLocation"/>
+                        <button class="button save" type="submit"></button>
+                        <button class="button cancel" type="button" ng-click="toggle('basicLocation')"></button>
+                    </form>
+                    
                     <table>
-                        <tr class="overview" ng-repeat="section in basic.overview">
-                            <th>{{section.title}}</th>
+                        <tr class="overview">
+                            <th>Experience</th>
                             <td>
-                                <span ng-repeat="value in section.values"><span ng-show="!$first">, </span><span>{{value}}</span></span>
+                                <span ng-repeat="experience in exp.experiences"><span ng-show="!$first">, </span><span>{{experience.company}}</span></span>
+                                <a href="#experience" class="edit"></a>
+                            </td>
+                        </tr>
+                        <tr class="overview">
+                            <th>Education</th>
+                            <td>
+                                <span>{{education.schools[0].name}}</span>
+                                <a href="#education" class="edit"></a>
                             </td>
                         </tr>
                     </table>
                 </div>
             </div>
-            
-
-            <div id="contact_info">
-                <table>
-                    <tr class="contactInfo" ng-repeat="link in basic.contactInfo">
-                        <th><img ng-src="{{link.icon}}" alt="Icon"/>{{link.method}}</th>
-                        <td>
-                            <a ng-href="{{link.ref}}">{{link.display}}</a>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+        
+            <form ng-submit="submitForm('basicContact', basic, 'contactInfo', temp.basicContact)">
+                <div id="contact_info">
+                    <table>
+                        <tr class="contactInfo" ng-repeat="link in basic.contactInfo">
+                            <th><img ng-src="{{link.icon}}" alt="Icon"/>{{link.method}}</th>
+                            <td>
+                                <span ng-show="show.basicContact">
+                                    <a ng-href="{{link.protocal}}{{link.ref}}">{{link.display}}</a>
+                                    <button class="edit" type="button" ng-click="editForm('basicContact', basic.contactInfo)"></button>
+                                </span>
+                                <span ng-show="!show.basicContact">
+                                    Link
+                                    <input type="{{link.type}}" ng-model="temp.basicContact[$index].ref"/>
+                                    Display
+                                    <input type="text" ng-model="temp.basicContact[$index].display"/>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td ng-show="!show.basicContact" colspan="2">
+                                <button class="button save" type="submit"></button>
+                                <button class="button cancel" type="button" ng-click="toggle('basicContact')"></button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
 
             <div id="contact_footer">
                 <img src="img/contact_info.png" alt="Contact Info"/>
@@ -64,11 +119,20 @@
                 
             <div id="summary" class="section">
                 <h3><img ng-src="{{summary.icon}}" alt="Icon"/>{{summary.title}}</h3>
-                <div>
-                    <p ng-repeat="para in summary.paras">
-                        <br ng-show="!$first"/>
-                        <span>{{para}}</span>
-                    <p>
+                <div ng-show="show.summary">
+                    <button class="edit" ng-click="editForm('summary', summary.paras)"></button>
+                    <p>{{summary.paras}}</p>
+                </div>
+                <div ng-show="!show.summary" ng-submit="submitForm('summary', summary, 'paras', temp.summary)">
+                    <form class="editForm">
+                        <div>
+                            <label>{{summary.title}}</label>
+                            <br/>
+                            <textarea ng-model="temp.summary" rows="12"></textarea>
+                        </div>
+                        <button class="button save" type="submit"></button>
+                        <button class="button cancel" type="button" ng-click="toggle('summary')"></button>
+                    </form>
                 </div>
             </div>
 
@@ -129,6 +193,7 @@
     <!-- In production use:
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
     -->
+    <script src="components/usefulFunction/functions.js"></script>
     <script src="components/angular/angular.min.js"></script>
     <script src="app.js"></script>
 </body>
