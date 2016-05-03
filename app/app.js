@@ -8,6 +8,16 @@ myCV.controller('bodyController', function ($scope, $http) {
     
     window.abc = $scope;
     
+    $scope.createDate = function (array, attrList) {
+        var i, j;
+        
+        for (i = 0; i < array.length; i = i + 1) {
+            for (j = 0; j < attrList.length; j = j + 1) {
+                array[i][attrList[j]] = new Date(array[i][attrList[j]]);
+            }
+        }
+    };
+    
     $http.get("personal_info/basic.json").success(function (data) {
         $scope.basic = data;
     });
@@ -18,18 +28,12 @@ myCV.controller('bodyController', function ($scope, $http) {
     
     $http.get("personal_info/experience.json").success(function (data) {
         $scope.exp = data;
-        
-        var experiences = $scope.exp.experiences,
-            i;
-        
-        for (i = 0; i < experiences.length; i = i + 1) {
-            experiences[i].startDate = new Date(experiences[i].startDate);
-            experiences[i].endDate = new Date(experiences[i].endDate);
-        }
+        $scope.createDate($scope.exp.experiences, ["startDate", "endDate"]);
     });
     
     $http.get("personal_info/projects.json").success(function (data) {
         $scope.prj = data;
+        $scope.createDate($scope.prj.projects, ["startDate", "endDate"]);
     });
     
     $http.get("personal_info/skills.json").success(function (data) {
@@ -46,7 +50,8 @@ myCV.controller('bodyController', function ($scope, $http) {
         "basicLocation": true,
         "basicContact": true,
         "summary": true,
-        "experience": true
+        "experience": true,
+        "projects": true
     };
     
     $scope.temp = {
@@ -55,11 +60,13 @@ myCV.controller('bodyController', function ($scope, $http) {
         "basicLocation": "",
         "basicContact": {},
         "summary": "",
-        "experience": {}
+        "experience": {},
+        "projects": {}
     };
     
     $scope.editIndex = {
-        "experience": -1
+        "experience": -1,
+        "projects": -1
     };
     
     $scope.show = function (displayName) {

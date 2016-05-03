@@ -321,3 +321,8 @@ textarea {
 textarea:focus {
     border-color: #4993e5;
 }
+
+.required::after {
+    content: " *";
+    color: #900;
+}

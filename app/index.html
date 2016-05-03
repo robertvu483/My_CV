@@ -151,7 +151,8 @@
                     <h5>{{experience.company}}</h5>
                     <span>
                         {{experience.startDate | date:'MMMM yyyy'}} - {{experience.endDate | date:'MMMM yyyy'}}
-                        <span ng-show="hasData(experience.location)"> | {{experience.location}}</span>
+                        <span ng-show="hasData(experience.location)"> | </span>
+                        {{experience.location}}
                     </span>
                     <p>{{experience.description}}</p>
                 </div>
@@ -177,7 +178,7 @@
                             <br/>
                             <input type="month" ng-model="temp.experience.startDate" required/>
                             -
-                            <input type="month" ng-model="temp.experience.endDate" required/>
+                            <input type="month" ng-model="temp.experience.endDate" min="{{temp.experience.startDate | date:'yyyy-MM'}}" required/>
                         </div>
                         <div>
                             <label>Description</label>
@@ -191,11 +192,45 @@
             </div>
 
             <div id="projects" class="section">
-                <h3><img ng-src="{{prj.icon}}" alt="Icon"/>{{prj.title}}</h3>
-                <div class="sectionHeader" ng-repeat="project in prj.projects">
-                    <h4>{{project.name}}</h4>
-                    <span>{{project.startDate}} - {{project.endDate}}</span>
+                <h3>
+                    <img ng-src="{{prj.icon}}" alt="Icon"/>
+                    {{prj.title}}
+                    <button class="card add" ng-click="editArrayForm('projects', {}, -1)">Add project</button>
+                </h3>
+                <div ng-show="display.projects" class="sectionHeader" ng-repeat="project in prj.projects">
+                    <h4>
+                        {{project.name}}
+                        <button class="card edit" ng-click="editArrayForm('projects', project, $index)"></button>
+                    </h4>
+                    <span>
+                        {{project.startDate | date:'MMMM yyyy'}}
+                        <span ng-show="hasData(project.endDate)"> - </span>
+                        {{project.endDate | date:'MMMM yyyy'}}
+                    </span>
                     <p>{{project.description}}</p>
+                </div>
+                <div ng-show="!display.projects">
+                    <form class="editForm" ng-submit="submitArrayForm('projects', prj.projects, temp.projects)">
+                        <div>
+                            <label class="required">Name</label>
+                            <br/>
+                            <input type="text" ng-model="temp.projects.name" required/>
+                        </div>
+                        <div>
+                            <label>Date range</label>
+                            <br/>
+                            <input type="month" ng-model="temp.projects.startDate" ng-required="hasData(temp.projects.endDate)"/>
+                            -
+                            <input type="month" ng-model="temp.projects.endDate" min="{{temp.projects.startDate | date:'yyyy-MM'}}"/>
+                        </div>
+                        <div>
+                            <label>Description</label>
+                            <br/>
+                            <textarea ng-model="temp.projects.description" rows="4"></textarea>
+                        </div>
+                        <button class="button save" type="submit"></button>
+                        <button class="button cancel" type="button" ng-click="show('projects')"></button>
+                    </form>
                 </div>
             </div>
 
