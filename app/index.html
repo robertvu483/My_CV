@@ -26,37 +26,37 @@
                 <div id="profile">
                     
                     <h1>
-                        <span ng-show="show.basicName">
+                        <span ng-show="display.basicName">
                             {{basic.name}}
-                            <button ng-click="editForm('basicName', basic.name)" class="edit"></button>
+                            <button ng-click="editForm('basicName', basic.name)" class="card edit"></button>
                         </span>
-                        <form ng-show="!show.basicName" ng-submit="submitForm('basicName', basic, 'name', temp.basicName)">
+                        <form ng-show="!display.basicName" ng-submit="submitForm('basicName', basic, 'name', temp.basicName)">
                             <input type="text" ng-model="temp.basicName"/>
                             <button class="button save" type="submit"></button>
-                            <button class="button cancel" type="button" ng-click="toggle('basicName')"></button>
+                            <button class="button cancel" type="button" ng-click="show('basicName')"></button>
                         </form>
                     </h1>
                     
                     <div>
-                        <span ng-show="show.basicHeadline">
+                        <span ng-show="display.basicHeadline">
                             {{basic.headline}}
-                            <button class="edit" ng-click="editForm('basicHeadline', basic.headline)"></button>
+                            <button class="card edit" ng-click="editForm('basicHeadline', basic.headline)"></button>
                         </span>
-                        <form ng-show="!show.basicHeadline" ng-submit="submitForm('basicHeadline', basic, 'headline', temp.basicHeadline)">
+                        <form ng-show="!display.basicHeadline" ng-submit="submitForm('basicHeadline', basic, 'headline', temp.basicHeadline)">
                             <input type="text" ng-model="temp.basicHeadline"/>
                             <button class="button save" type="submit"></button>
-                            <button class="button cancel" type="button" ng-click="toggle('basicHeadline')"></button>
+                            <button class="button cancel" type="button" ng-click="show('basicHeadline')"></button>
                         </form>
                     </div>
                     
-                    <span ng-show="show.basicLocation">
+                    <span ng-show="display.basicLocation">
                         {{basic.location}}
-                        <button class="edit" ng-click="editForm('basicLocation', basic.location)"></button>
+                        <button class="card edit" ng-click="editForm('basicLocation', basic.location)"></button>
                     </span>
-                    <form ng-show="!show.basicLocation" ng-submit="submitForm('basicLocation', basic, 'location', temp.basicLocation)">
+                    <form ng-show="!display.basicLocation" ng-submit="submitForm('basicLocation', basic, 'location', temp.basicLocation)">
                         <input type="text" ng-model="temp.basicLocation"/>
                         <button class="button save" type="submit"></button>
-                        <button class="button cancel" type="button" ng-click="toggle('basicLocation')"></button>
+                        <button class="button cancel" type="button" ng-click="show('basicLocation')"></button>
                     </form>
                     
                     <table>
@@ -64,14 +64,14 @@
                             <th>Experience</th>
                             <td>
                                 <span ng-repeat="experience in exp.experiences"><span ng-show="!$first">, </span><span>{{experience.company}}</span></span>
-                                <a href="#experience" class="edit"></a>
+                                <a href="#experience" class="card edit"></a>
                             </td>
                         </tr>
                         <tr class="overview">
                             <th>Education</th>
                             <td>
                                 <span>{{education.schools[0].name}}</span>
-                                <a href="#education" class="edit"></a>
+                                <a href="#education" class="card edit"></a>
                             </td>
                         </tr>
                     </table>
@@ -84,11 +84,11 @@
                         <tr class="contactInfo" ng-repeat="link in basic.contactInfo">
                             <th><img ng-src="{{link.icon}}" alt="Icon"/>{{link.method}}</th>
                             <td>
-                                <span ng-show="show.basicContact">
+                                <span ng-show="display.basicContact">
                                     <a ng-href="{{link.protocal}}{{link.ref}}">{{link.display}}</a>
-                                    <button class="edit" type="button" ng-click="editForm('basicContact', basic.contactInfo)"></button>
+                                    <button class="card edit" type="button" ng-click="editForm('basicContact', basic.contactInfo)"></button>
                                 </span>
-                                <span ng-show="!show.basicContact">
+                                <span ng-show="!display.basicContact">
                                     Link
                                     <input type="{{link.type}}" ng-model="temp.basicContact[$index].ref"/>
                                     Display
@@ -97,9 +97,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <td ng-show="!show.basicContact" colspan="2">
+                            <td ng-show="!display.basicContact" colspan="2">
                                 <button class="button save" type="submit"></button>
-                                <button class="button cancel" type="button" ng-click="toggle('basicContact')"></button>
+                                <button class="button cancel" type="button" ng-click="show('basicContact')"></button>
                             </td>
                         </tr>
                     </table>
@@ -119,36 +119,74 @@
                 
             <div id="summary" class="section">
                 <h3><img ng-src="{{summary.icon}}" alt="Icon"/>{{summary.title}}</h3>
-                <div ng-show="show.summary">
-                    <button class="edit" ng-click="editForm('summary', summary.paras)"></button>
+                <div ng-show="display.summary">
+                    <button class="card edit" ng-click="editForm('summary', summary.paras)"></button>
                     <p>{{summary.paras}}</p>
                 </div>
-                <div ng-show="!show.summary" ng-submit="submitForm('summary', summary, 'paras', temp.summary)">
-                    <form class="editForm">
+                <div ng-show="!display.summary">
+                    <form class="editForm" ng-submit="submitForm('summary', summary, 'paras', temp.summary)">
                         <div>
-                            <label>{{summary.title}}</label>
+                            <label>Summary</label>
                             <br/>
                             <textarea ng-model="temp.summary" rows="12"></textarea>
                         </div>
                         <button class="button save" type="submit"></button>
-                        <button class="button cancel" type="button" ng-click="toggle('summary')"></button>
+                        <button class="button cancel" type="button" ng-click="show('summary')"></button>
                     </form>
                 </div>
             </div>
 
             <div id="experience" class="section">
-                <h3><img ng-src="{{exp.icon}}" alt="Icon"/>{{exp.title}}</h3>
-                <div class="sectionHeader" ng-repeat="experience in exp.experiences">
+                <h3>
+                    <img ng-src="{{exp.icon}}" alt="Icon"/>
+                    {{exp.title}}
+                    <button class="card add" ng-click="editArrayForm('experience', {'icon':'img/hcmus.png'}, -1)">Add position</button>
+                </h3>
+                <div ng-show="display.experience" class="sectionHeader" ng-repeat="experience in exp.experiences">
                     <img ng-src="{{experience.icon}}" alt="Icon"/>
-                    <h4>{{experience.title}}</h4>
+                    <h4>
+                        {{experience.title}}
+                        <button class="card edit" ng-click="editArrayForm('experience', experience, $index)"></button>
+                    </h4>
                     <h5>{{experience.company}}</h5>
-                    <span>{{experience.startDate}} - {{experience.endDate}} | {{experience.location}}</span>
-                    <div>
-                        <p ng-repeat="para in experience.description">
-                            <br ng-show="!$first"/>
-                            <span>{{para}}</span>
-                        <p>
-                    </div>
+                    <span>
+                        {{experience.startDate | date:'MMMM yyyy'}} - {{experience.endDate | date:'MMMM yyyy'}}
+                        <span ng-show="hasData(experience.location)"> | {{experience.location}}</span>
+                    </span>
+                    <p>{{experience.description}}</p>
+                </div>
+                <div ng-show="!display.experience">
+                    <form class="editForm" ng-submit="submitArrayForm('experience', exp.experiences, temp.experience)">
+                        <div>
+                            <label class="required">Company Name</label>
+                            <br/>
+                            <input type="text" ng-model="temp.experience.company" required/>
+                        </div>
+                        <div>
+                            <label class="required">Title</label>
+                            <br/>
+                            <input type="text" ng-model="temp.experience.title" required/>
+                        </div>
+                        <div>
+                            <label>Location</label>
+                            <br/>
+                            <input type="text" ng-model="temp.experience.location"/>
+                        </div>
+                        <div>
+                            <label class="required">Time Period</label>
+                            <br/>
+                            <input type="month" ng-model="temp.experience.startDate" required/>
+                            -
+                            <input type="month" ng-model="temp.experience.endDate" required/>
+                        </div>
+                        <div>
+                            <label>Description</label>
+                            <br/>
+                            <textarea ng-model="temp.experience.description" rows="6"></textarea>
+                        </div>
+                        <button class="button save" type="submit"></button>
+                        <button class="button cancel" type="button" ng-click="show('experience')"></button>
+                    </form>
                 </div>
             </div>
 
@@ -157,12 +195,7 @@
                 <div class="sectionHeader" ng-repeat="project in prj.projects">
                     <h4>{{project.name}}</h4>
                     <span>{{project.startDate}} - {{project.endDate}}</span>
-                    <div>
-                        <p ng-repeat="para in project.description">
-                            <br ng-show="!$first"/>
-                            <span>{{para}}</span>
-                        <p>
-                    </div>
+                    <p>{{project.description}}</p>
                 </div>
             </div>
 

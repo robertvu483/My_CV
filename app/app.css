@@ -180,7 +180,7 @@ h5 {
     margin-top: 3px;
 }
 
-.sectionHeader > div {
+.sectionHeader > p {
     margin-top: 10px;
 }
 
@@ -217,23 +217,36 @@ input {
     font-size: inherit;
 }
 
-.edit {
-    background-color: rgba(0, 0, 0, 0);
+.card {
+    background-color: #f2f2f2;
     border: 0px;
     font-size: inherit;
     color: #505e69;
-    padding: 2px 4px;
     text-decoration: none;
+    cursor: pointer;
+}
+
+.card:hover {
+    color: white;
+    background-color: #00a0dc;
+}
+
+.edit {
+    padding: 2px 4px;
 }
 
 .edit::after {
     content: "\270E";
 }
 
-.edit:hover {
-    color: white;
-    background-color: #00a0dc;
-    cursor: pointer;
+.add {
+    margin-left: 5px;
+    padding: 5px 10px ;
+    float: right;
+}
+
+.add::before {
+    content: "\2795";
 }
 
 .button {
@@ -242,6 +255,7 @@ input {
     padding: 4px 13px;
     font-size: 13px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .save {
@@ -282,6 +296,16 @@ label {
     color: black;
 }
 
+input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+input:focus {
+    border-color: #4993e5;
+}
+
 textarea {
     padding: 5px;
     border: 1px solid #ccc;
@@ -292,4 +316,8 @@ textarea {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+textarea:focus {
+    border-color: #4993e5;
 }
