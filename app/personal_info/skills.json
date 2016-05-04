@@ -1,30 +1,26 @@
 {
     "icon":"img/skills.png",
     "title":"Skills",
-    "sections":[
-        {
-            "title":"Top Skills",
-            "values":[
-                "C#",
-                "Windows Universal Apps",
-                "Java",
-                "Android",
-                "Applications",
-                "Computer",
-                "Information Technology",
-                "Mobile Development",
-                "Software Engineering",
-                "Web Development"
-            ]
-        },
-        {
-            "title":"Also knows about",
-            "values":[
-                "Leadership",
-                "C/C++",
-                "Blog",
-                "Media Editting"
-            ]
-        }
+    "skills":[
+        "C#",
+        "Windows Universal Apps",
+        "Java",
+        "Android",
+        "Applications",
+        "Computer",
+        "Information Technology",
+        "Mobile Development",
+        "Software Engineering",
+        "Web Development",
+        "Aenean finibus",
+        "Quisque interdum",
+        "Phasellus porta",
+        "Morbi tempus",
+        "Phasellus non",
+        "Cras pharetra",
+        "Vivamus turpis",
+        "Vestibulum finibus",
+        "Nulla accumsan",
+        "Ut rutrum"
     ]
 }

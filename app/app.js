@@ -1,4 +1,4 @@
-/*global angular, cloneObject*/
+/*global angular, cloneObject, createDate*/
 
 // Declare app level module which depends on views, and components
 var myCV = angular.module('myCV', []);
@@ -7,16 +7,6 @@ myCV.controller('bodyController', function ($scope, $http) {
     'use strict';
     
     window.abc = $scope;
-    
-    $scope.createDate = function (array, attrList) {
-        var i, j;
-        
-        for (i = 0; i < array.length; i = i + 1) {
-            for (j = 0; j < attrList.length; j = j + 1) {
-                array[i][attrList[j]] = new Date(array[i][attrList[j]]);
-            }
-        }
-    };
     
     $http.get("personal_info/basic.json").success(function (data) {
         $scope.basic = data;
@@ -28,16 +18,16 @@ myCV.controller('bodyController', function ($scope, $http) {
     
     $http.get("personal_info/experience.json").success(function (data) {
         $scope.exp = data;
-        $scope.createDate($scope.exp.experiences, ["startDate", "endDate"]);
+        createDate($scope.exp.experiences, ["startDate", "endDate"]);
     });
     
     $http.get("personal_info/projects.json").success(function (data) {
         $scope.prj = data;
-        $scope.createDate($scope.prj.projects, ["startDate", "endDate"]);
+        createDate($scope.prj.projects, ["startDate", "endDate"]);
     });
     
     $http.get("personal_info/skills.json").success(function (data) {
-        $scope.skills = data;
+        $scope.sks = data;
     });
     
     $http.get("personal_info/education.json").success(function (data) {
@@ -52,6 +42,7 @@ myCV.controller('bodyController', function ($scope, $http) {
         "summary": true,
         "experience": true,
         "projects": true,
+        "skills": true,
         "education": true
     };
     
@@ -59,10 +50,12 @@ myCV.controller('bodyController', function ($scope, $http) {
         "basicName": "",
         "basicHeadline": "",
         "basicLocation": "",
-        "basicContact": {},
+        "basicContact": [],
         "summary": "",
         "experience": {},
         "projects": {},
+        "skills": [],
+        "skill": "",
         "education": {}
     };
     
@@ -109,5 +102,16 @@ myCV.controller('bodyController', function ($scope, $http) {
     
     $scope.hasData = function (obj) {
         return !(typeof obj === "undefined" || obj === null || obj === "");
+    };
+    
+    $scope.addSkill = function () {
+        if ($scope.temp.skill !== "") {
+            $scope.temp.skills.push($scope.temp.skill);
+            $scope.temp.skill = "";
+        }
+    };
+    
+    $scope.removeSkill = function (index) {
+        $scope.temp.skills.splice(index, 1);
     };
 });
