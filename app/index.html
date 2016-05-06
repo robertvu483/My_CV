@@ -21,18 +21,25 @@
         
         <div id="basic">
             
-            <div id="top_card">
+            <div id="top_card" class="hideCard">
+                
                 <div id="avatar">
-                    <div>
-                        <form>
-                            <input type="file"/>
-                            <button class="button save"></button>
-                            <button class="button cancel"></button>
-                        </form>
-                        
+                    <div ng-show="display.basicAvatar">
+                        <button class="card edit absolute" ng-click="editForm('basicAvatar', basic.avatar)"></button>
+                        <img ng-src="{{basic.avatar}}" alt="Avatar"/>
                     </div>
-                    <img ng-src="{{basic.avatar}}" alt="Avatar"/>
+                    <div ng-show="!display.basicAvatar">
+                        <form class="absolute avatarForm" ng-submit="submitForm('basicAvatar', basic, 'avatar', temp.basicAvatar)" onsubmit="resetFileInput('avatarFile')">
+                            <input id="avatarFile" type="file" accept="image/*" file-model="temp.basicAvatar"/>
+                            <div>
+                                <button type="submit" class="button save"></button>
+                                <button type="button" class="button cancel" ng-click="show('basicAvatar')" onclick="resetFileInput('avatarFile')"></button>
+                            </div>
+                        </form>
+                        <img ng-src="{{temp.basicAvatar}}" alt="Avatar"/>
+                    </div>
                 </div>
+                
                 <div id="profile">
                     
                     <h1>
@@ -89,7 +96,7 @@
             </div>
         
             <form ng-submit="submitForm('basicContact', basic, 'contactInfo', temp.basicContact)">
-                <div id="contact_info">
+                <div class="hideCard" ng-show="display.basicFooter" id="contact_info">
                     <table>
                         <tr class="contactInfo" ng-repeat="link in basic.contactInfo">
                             <th><img ng-src="{{link.icon}}" alt="Icon"/>{{link.method}}</th>
@@ -116,10 +123,10 @@
                 </div>
             </form>
 
-            <div id="contact_footer">
+            <button id="contact_footer" ng-click="toggle('basicFooter')">
                 <img src="img/contact_info.png" alt="Contact Info"/>
                 <span>Contact Info</span>
-            </div>
+            </button>
             
         </div>
         
@@ -129,7 +136,7 @@
             
             <!-- ###################### Summary ###################### -->
                 
-            <div id="summary" class="section">
+            <div id="summary" class="section hideCard">
                 <h3><img ng-src="{{summary.icon}}" alt="Icon"/>{{summary.title}}</h3>
                 <div ng-show="display.summary">
                     <button class="card edit" ng-click="editForm('summary', summary.paras)"></button>
@@ -150,14 +157,14 @@
             
             <!-- ###################### Experience ###################### -->
 
-            <div id="experience" class="section">
+            <div id="experience" class="section hideCard">
                 <h3>
                     <img ng-src="{{exp.icon}}" alt="Icon"/>
                     {{exp.title}}
-                    <button class="card add" ng-click="editArrayForm('experience', {'icon':'img/hcmus.png'}, -1)">Add position</button>
+                    <button ng-show="display.experience" class="card add" ng-click="editArrayForm('experience', {}, -1)">Add position</button>
                 </h3>
                 <div ng-show="display.experience" class="sectionHeader" ng-repeat="experience in exp.experiences">
-                    <img class="icon" ng-src="{{experience.icon}}" alt="Icon"/>
+                    <img ng-show="hasData(experience.icon)" class="icon" ng-src="{{experience.icon}}" alt="Icon"/>
                     <h4>
                         {{experience.title}}
                         <button class="card edit" ng-click="editArrayForm('experience', experience, $index)"></button>
@@ -171,11 +178,16 @@
                     <p>{{experience.description}}</p>
                 </div>
                 <div ng-show="!display.experience">
-                    <form class="editForm" ng-submit="submitArrayForm('experience', exp.experiences, temp.experience)">
+                    <form class="editForm" ng-submit="submitArrayForm('experience', exp.experiences, temp.experience)" onsubmit="resetFileInput('expFile')">
                         <div>
                             <label class="required">Company Name</label>
                             <br/>
                             <input type="text" ng-model="temp.experience.company" required/>
+                        </div>
+                        <div>
+                            <label>Company Logo</label>
+                            <br/>
+                            <input id="expFile" class="largeInput" type="file" file-model="temp.experience.icon"/>
                         </div>
                         <div>
                             <label class="required">Title</label>
@@ -200,18 +212,18 @@
                             <textarea ng-model="temp.experience.description" rows="6"></textarea>
                         </div>
                         <button class="button save" type="submit"></button>
-                        <button class="button cancel" type="button" ng-click="show('experience')"></button>
+                        <button class="button cancel" type="button" ng-click="show('experience')" onclick="resetFileInput('expFile')"></button>
                     </form>
                 </div>
             </div>
             
             <!-- ###################### Projects ###################### -->
 
-            <div id="projects" class="section">
+            <div id="projects" class="section hideCard">
                 <h3>
                     <img ng-src="{{prj.icon}}" alt="Icon"/>
                     {{prj.title}}
-                    <button class="card add" ng-click="editArrayForm('projects', {}, -1)">Add project</button>
+                    <button ng-show="display.projects" class="card add" ng-click="editArrayForm('projects', {}, -1)">Add project</button>
                 </h3>
                 <div ng-show="display.projects" class="sectionHeader" ng-repeat="project in prj.projects">
                     <h4>
@@ -233,7 +245,7 @@
                             <input type="text" ng-model="temp.projects.name" required/>
                         </div>
                         <div>
-                            <label>Date range</label>
+                            <label>Date Range</label>
                             <br/>
                             <input class="mediumInput" type="month" ng-model="temp.projects.startDate" ng-required="hasData(temp.projects.endDate)"/>
                             -
@@ -252,7 +264,7 @@
             
             <!-- ###################### Skills ###################### -->
 
-            <div id="skills" class="section">
+            <div id="skills" class="section hideCard">
                 <h3><img ng-src="{{sks.icon}}" alt="Icon"/>{{sks.title}}</h3>
                 <div ng-show="display.skills" class="inlineList" id="showList">
                     <button class="card edit" ng-click="editForm('skills', sks.skills)"></button>
@@ -264,7 +276,7 @@
                     <form class="editForm" ng-submit="submitForm('skills', sks, 'skills', temp.skills)">
                         <div>
                             <input class="largeInput" type="text" ng-model="temp.skill" placeholder="What are your areas of expertise?"/>
-                            <button class="button addB" type="button" ng-click="addSkill()";></button>
+                            <button class="button addB" type="button" ng-click="addSkill()"></button>
                         </div>
                         <div class="inlineList" id="editList">
                             <ul>
@@ -282,14 +294,14 @@
             
             <!-- ###################### Education ###################### -->
 
-            <div id="education" class="section">
+            <div id="education" class="section hideCard">
                 <h3>
                     <img ng-src="{{education.icon}}" alt="Icon"/>
                     {{education.title}}
-                    <button class="card add" ng-click="editArrayForm('education', {'icon':'img/hcmus.png'}, -1)">Add education</button>
+                    <button ng-show="display.education" class="card add" ng-click="editArrayForm('education', {}, -1)">Add education</button>
                 </h3>
                 <div ng-show="display.education" class="sectionHeader" ng-repeat="school in education.schools">
-                    <img class="icon" ng-src="{{school.icon}}" alt="Icon"/>
+                    <img ng-show="hasData(school.icon)" class="icon" ng-src="{{school.icon}}" alt="Icon"/>
                     <h4>
                         {{school.name}}
                         <button class="card edit" ng-click="editArrayForm('education', school, $index)"></button>
@@ -307,11 +319,16 @@
                     </p>
                 </div>
                 <div ng-show="!display.education">
-                    <form class="editForm" ng-submit="submitArrayForm('education', education.schools, temp.education)">
+                    <form class="editForm" ng-submit="submitArrayForm('education', education.schools, temp.education)" onsubmit="resetFileInput('eduFile')">
                         <div>
                             <label class="required">School</label>
                             <br/>
                             <input type="text" ng-model="temp.education.name" required/>
+                        </div>
+                        <div>
+                            <label>School Logo</label>
+                            <br/>
+                            <input id="eduFile" class="largeInput" type="file" file-model="temp.education.icon"/>
                         </div>
                         <div>
                             <label>Dates Attended</label>
@@ -350,7 +367,7 @@
                             <textarea ng-model="temp.education.description" rows="6"></textarea>
                         </div>
                         <button class="button save" type="submit"></button>
-                        <button class="button cancel" type="button" ng-click="show('education')"></button>
+                        <button class="button cancel" type="button" ng-click="show('education')" onclick="resetFileInput('eduFile')"></button>
                     </form>
                 </div>
             </div>
@@ -365,5 +382,6 @@
     <script src="components/usefulFunction/functions.js"></script>
     <script src="components/angular/angular.min.js"></script>
     <script src="app.js"></script>
+    <script src="components/customDirectives/customDirectives.js"></script>
 </body>
 </html>

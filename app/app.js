@@ -1,12 +1,10 @@
-/*global angular, cloneObject, createDate*/
+/*global angular, createDate*/
 
 // Declare app level module which depends on views, and components
-var myCV = angular.module('myCV', []);
+var myCV = angular.module('myCV', ['customDirectives']);
 
 myCV.controller('bodyController', function ($scope, $http) {
     'use strict';
-    
-    window.abc = $scope;
     
     $http.get("personal_info/basic.json").success(function (data) {
         $scope.basic = data;
@@ -35,10 +33,12 @@ myCV.controller('bodyController', function ($scope, $http) {
     });
     
     $scope.display = {
+        "basicAvatar": true,
         "basicName": true,
         "basicHeadline": true,
         "basicLocation": true,
         "basicContact": true,
+        "basicFooter": false,
         "summary": true,
         "experience": true,
         "projects": true,
@@ -47,6 +47,7 @@ myCV.controller('bodyController', function ($scope, $http) {
     };
     
     $scope.temp = {
+        "basicAvatar": "",
         "basicName": "",
         "basicHeadline": "",
         "basicLocation": "",
@@ -73,9 +74,13 @@ myCV.controller('bodyController', function ($scope, $http) {
         $scope.display[displayName] = false;
     };
     
+    $scope.toggle = function (displayName) {
+        $scope.display[displayName] = !$scope.display[displayName];
+    };
+    
     $scope.editForm = function (displayName, curValue) {
         $scope.hide(displayName);
-        $scope.temp[displayName] = cloneObject(curValue);
+        $scope.temp[displayName] = angular.copy(curValue);
     };
     
     $scope.editArrayForm = function (displayName, curValue, index) {
@@ -85,7 +90,7 @@ myCV.controller('bodyController', function ($scope, $http) {
     
     $scope.submitForm = function (displayName, obj, attrName, newValue) {
         $scope.show(displayName);
-        obj[attrName] = cloneObject(newValue);
+        obj[attrName] = angular.copy(newValue);
     };
     
     $scope.submitArrayForm = function (displayName, array, newValue) {
@@ -94,9 +99,9 @@ myCV.controller('bodyController', function ($scope, $http) {
         $scope.show(displayName);
         
         if (index !== -1) {
-            array[index] = cloneObject(newValue);
+            array[index] = angular.copy(newValue);
         } else {
-            array.push(cloneObject(newValue));
+            array.push(angular.copy(newValue));
         }
     };
     
