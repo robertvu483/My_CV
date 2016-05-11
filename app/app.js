@@ -1,37 +1,31 @@
-/*global angular, createDate*/
+/*global angular, createDate, Firebase*/
 
 // Declare app level module which depends on views, and components
-var myCV = angular.module('myCV', ['customDirectives']);
+var myCV = angular.module('myCV', ['customDirectives', 'firebase']);
 
-myCV.controller('bodyController', function ($scope, $http) {
+myCV.controller('bodyController', function ($scope, $firebaseObject) {
     'use strict';
+    var ref = new Firebase("https://brilliant-fire-3035.firebaseio.com");
     
-    $http.get("personal_info/basic.json").success(function (data) {
-        $scope.basic = data;
-    });
+    $scope.basic = $firebaseObject(ref.child("basic"));
+    $scope.summary = $firebaseObject(ref.child("summary"));
+    $scope.exp = $firebaseObject(ref.child("experience"));
+    $scope.prj = $firebaseObject(ref.child("projects"));
+    $scope.sks = $firebaseObject(ref.child("skills"));
+    $scope.education = $firebaseObject(ref.child("education"));
     
-    $http.get("personal_info/summary.json").success(function (data) {
-        $scope.summary = data;
-    });
-    
-    $http.get("personal_info/experience.json").success(function (data) {
-        $scope.exp = data;
+    $scope.exp.$loaded().then(function () {
         createDate($scope.exp.experiences, ["startDate", "endDate"]);
+    })["catch"](function (error) {
+        window.alert("Error:" + error);
     });
     
-    $http.get("personal_info/projects.json").success(function (data) {
-        $scope.prj = data;
+    $scope.prj.$loaded().then(function () {
         createDate($scope.prj.projects, ["startDate", "endDate"]);
+    })["catch"](function (error) {
+        window.alert("Error:" + error);
     });
-    
-    $http.get("personal_info/skills.json").success(function (data) {
-        $scope.sks = data;
-    });
-    
-    $http.get("personal_info/education.json").success(function (data) {
-        $scope.education = data;
-    });
-    
+
     $scope.display = {
         "basicAvatar": true,
         "basicName": true,
